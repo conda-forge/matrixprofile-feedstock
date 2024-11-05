@@ -12,12 +12,13 @@ source:
   #path: ../../src/matrixprofile
 
 build:
-  number: 0
+  number: 1
   script: {{ PYTHON }} -m pip install . -vv
 
 requirements:
   build:
     - {{ compiler('c') }}
+    - {{ stdlib("c") }}
     - llvm-openmp  # [osx]
     - libgomp      # [linux]
   host:
@@ -27,7 +28,6 @@ requirements:
     - python
   run:
     - matplotlib-base >=3.0.3
-    - {{ pin_compatible('numpy') }}
     - protobuf ==3.11.2
     - python
     - scipy <2.0.0,>=1.3.2
